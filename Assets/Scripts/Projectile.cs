@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour {
     [Header("References")]
     [SerializeField] private Renderer _renderer;
     [SerializeField] private ParticleSystem _hitEffect;
+    [field: SerializeField] public Material Material { get; private set; }
 
     private Rigidbody _rigidbody;
     private Tank _tank;
@@ -34,7 +35,7 @@ public class Projectile : MonoBehaviour {
         _tank = tank;
         _tank.OnEpisodeStarted += OnEpisodeStarted;
 
-        _renderer.material = _tank.ProjectileMaterial;
+        _renderer.material = Material;
     }
 
 
@@ -62,7 +63,7 @@ public class Projectile : MonoBehaviour {
         ParticleSystem particle = Instantiate(_hitEffect, collision.contacts[0].point, Quaternion.identity);
         particle.transform.forward = collision.contacts[0].normal;
         ParticleSystem.MainModule hitEffectMain = particle.main;
-        hitEffectMain.startColor = _tank.ProjectileMaterial.color;
+        hitEffectMain.startColor = Material.color;
     }
 
 
