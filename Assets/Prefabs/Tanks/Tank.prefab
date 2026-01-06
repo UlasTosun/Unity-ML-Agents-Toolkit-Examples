@@ -4508,7 +4508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: EnvironmentSensor
   m_DetectableTags: []
-  m_RaysPerDirection: 6
+  m_RaysPerDirection: 12
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.2
   m_RayLength: 40
@@ -4794,6 +4794,7 @@ GameObject:
   - component: {fileID: -6947395340430454458}
   - component: {fileID: 2504913521043133853}
   - component: {fileID: 9026857706515597225}
+  - component: {fileID: -693615390004548525}
   - component: {fileID: 6270881266531158095}
   - component: {fileID: -4765343669826183703}
   m_Layer: 6
@@ -4900,6 +4901,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c08b9e087851b4fafff010f3130cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tank: {fileID: -6947395340430454458}
+  _rigidbody: {fileID: -8492076674030876855}
+  <Name>k__BackingField: TankMoveActuator
   _maxSpeed: 10
   _acceleration: 20
   _maxAngularSpeed: 180
@@ -4919,7 +4923,24 @@ MonoBehaviour:
   _projectilePrefab: {fileID: -6896218466214005528, guid: 783b444954b406e47a3f8313ce521c68, type: 3}
   _firePoint: {fileID: 8799256084134342862}
   _fireEffect: {fileID: 139959754021114971}
+  <Name>k__BackingField: TankFireActuator
   _reloadTime: 1
+--- !u!114 &-693615390004548525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890786044646817406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c8c67a8c19f44c9e83081c7f46de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tank: {fileID: -6947395340430454458}
+  _tankFireActuator: {fileID: 9026857706515597225}
+  <SensorName>k__BackingField: TankSensor
+  _observationStacks: 5
 --- !u!114 &6270881266531158095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4933,8 +4954,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 5
+    VectorObservationSize: 0
+    NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Unity.MLAgents;
-using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 
@@ -14,6 +13,7 @@ public class Tank : Agent {
     public float RelativeHealth => Mathf.Clamp01((float) Health / _maxHealth);
     public event UnityAction OnHealthChanged;
     public event UnityAction OnEpisodeStarted;
+    public event UnityAction OnCollectObservations;
 
     private InputSystemActions _inputActions;
     private LayerMask _groundCheckLayer;
@@ -53,7 +53,7 @@ public class Tank : Agent {
 
 
     public override void CollectObservations(VectorSensor sensor) {
-        //sensor.AddObservation(Mathf.Clamp01(_timeSinceLastShot / _reloadTime));
+        OnCollectObservations?.Invoke();
     }
 
 

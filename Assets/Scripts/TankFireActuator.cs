@@ -10,7 +10,8 @@ public class TankFireActuator : ActuatorComponent, IActuator {
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ParticleSystem _fireEffect;
     
-    [Header("Settings")]
+    [field: Header("Settings")]
+    [field: SerializeField] public string Name { get; private set; } = nameof(TankFireActuator);
     [SerializeField] private float _reloadTime = 1f;
 
     private Tank _tank;
@@ -18,7 +19,6 @@ public class TankFireActuator : ActuatorComponent, IActuator {
     private float _timeSinceLastShot;
 
     public float RelativeReloadTime => Mathf.Clamp01(_timeSinceLastShot / _reloadTime);
-    public string Name => nameof(TankFireActuator);
     public override ActionSpec ActionSpec { get; } = ActionSpec.MakeDiscrete(2);
 
 

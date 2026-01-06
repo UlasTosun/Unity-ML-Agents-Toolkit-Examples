@@ -3,22 +3,23 @@ using Unity.MLAgents.Actuators;
 
 
 
-[RequireComponent(typeof(Rigidbody), typeof(Tank))]
 public class TankMoveActuator : ActuatorComponent, IActuator {
+    
+    [Header("References")]
+    [SerializeField] private Tank _tank;
+    [SerializeField] private Rigidbody _rigidbody;
 
-    [Header("Settings")]
+    [field: Header("Settings")]
+    [field: SerializeField] public string Name { get; private set; } = nameof(TankMoveActuator);
     [SerializeField] private float _maxSpeed = 10f;
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _maxAngularSpeed = 180f;
     [SerializeField] private float _angularAcceleration = 180f;
 
-    private Rigidbody _rigidbody;
-    private Tank _tank;
     private InputSystemActions _inputActions;
     private float _speed;
     private float _angularSpeed;
 
-    public string Name => nameof(TankMoveActuator);
     public override ActionSpec ActionSpec { get; } = ActionSpec.MakeDiscrete(3, 3);
 
 
@@ -27,10 +28,7 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
         _inputActions = new InputSystemActions();
         _inputActions.Tank.Enable();
 
-        _tank = GetComponent<Tank>();
         _tank.OnEpisodeStarted += OnEpisodeStarted;
-
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
 
