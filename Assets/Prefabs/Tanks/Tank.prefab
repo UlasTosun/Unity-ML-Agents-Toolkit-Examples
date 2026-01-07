@@ -4796,7 +4796,7 @@ GameObject:
   - component: {fileID: 9026857706515597225}
   - component: {fileID: -693615390004548525}
   - component: {fileID: 6270881266531158095}
-  - component: {fileID: -4765343669826183703}
+  - component: {fileID: -4771750826436511689}
   m_Layer: 6
   m_Name: Tank
   m_TagString: Untagged
@@ -4972,7 +4972,7 @@ MonoBehaviour:
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
---- !u!114 &-4765343669826183703
+--- !u!114 &-4771750826436511689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4981,12 +4981,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4890786044646817406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Script: {fileID: 11500000, guid: 81de04a0698462841a2fa985d6092a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   DecisionStep: 0
   TakeActionsBetweenDecisions: 1
+  _tankFireActuator: {fileID: 9026857706515597225}
 --- !u!1 &4919274965387605227
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,6 @@ public class Tank : Agent {
     public event UnityAction OnEpisodeStarted;
     public event UnityAction OnCollectObservations;
 
-    private InputSystemActions _inputActions;
     private LayerMask _groundCheckLayer;
     private int _health;
 
@@ -36,10 +35,6 @@ public class Tank : Agent {
 
     protected override void Awake() {
         _groundCheckLayer = LayerMask.NameToLayer("Ground Check");
-
-        _inputActions = new InputSystemActions();
-        _inputActions.Tank.Enable();
-
         Health = _maxHealth;
     }
 

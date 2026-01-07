@@ -19,6 +19,8 @@ public class TankFireActuator : ActuatorComponent, IActuator {
     private float _timeSinceLastShot;
 
     public float RelativeReloadTime => Mathf.Clamp01(_timeSinceLastShot / _reloadTime);
+    public Projectile ActiveProjectile { get; private set;}
+    
     public override ActionSpec ActionSpec { get; } = ActionSpec.MakeDiscrete(2);
 
 
@@ -62,11 +64,11 @@ public class TankFireActuator : ActuatorComponent, IActuator {
 
     private void Fire(int action) {
         // 0: do not fire, 1: fire
-        if (_projectilePrefab == null || _firePoint == null || action == 0 || _timeSinceLastShot < _reloadTime)
+        if (!_projectilePrefab || !_firePoint || action == 0 || _timeSinceLastShot < _reloadTime || ActiveProjectile)
             return;
 
-        Projectile projectile = Instantiate(_projectilePrefab, _firePoint.position, _firePoint.rotation);
-        projectile.Initialize(_tank);
+        ActiveProjectile = Instantiate(_projectilePrefab, _firePoint.position, _firePoint.rotation);
+        ActiveProjectile.Initialize(_tank);
 
         _timeSinceLastShot = 0f;
         _fireEffect?.Play();
