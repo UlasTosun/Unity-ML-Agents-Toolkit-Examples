@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private int _damage = 40;
 
     [Header("References")]
-    [SerializeField] private Renderer _renderer;
     [SerializeField] private ParticleSystem _hitEffect;
     [field: SerializeField] public Material Material { get; private set; }
 
@@ -34,8 +33,6 @@ public class Projectile : MonoBehaviour {
     public void Initialize(Tank tank) {
         _tank = tank;
         _tank.OnEpisodeStarted += OnEpisodeStarted;
-
-        _renderer.material = Material;
     }
 
 
