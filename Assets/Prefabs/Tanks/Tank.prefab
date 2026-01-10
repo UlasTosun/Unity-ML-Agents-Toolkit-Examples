@@ -4507,7 +4507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: EnvironmentSensor
-  m_DetectableTags: []
+  m_DetectableTags:
+  - Obstacle
+  - Tank
   m_RaysPerDirection: 12
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.2
@@ -4795,11 +4797,12 @@ GameObject:
   - component: {fileID: 2504913521043133853}
   - component: {fileID: 9026857706515597225}
   - component: {fileID: -693615390004548525}
+  - component: {fileID: 7455049307762589245}
   - component: {fileID: 6270881266531158095}
   - component: {fileID: -4771750826436511689}
   m_Layer: 6
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4939,8 +4942,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tank: {fileID: -6947395340430454458}
   _tankFireActuator: {fileID: 9026857706515597225}
+  _environmentRaySensor: {fileID: 5477982240615182874}
+  _aimingRaySensor: {fileID: 9009050469086354430}
   <SensorName>k__BackingField: TankSensor
   _observationStacks: 5
+--- !u!114 &7455049307762589245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890786044646817406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0f8be9a37d6486498061e2cbc4cd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RootBody: {fileID: -8492076674030876855}
+  VirtualRoot: {fileID: 0}
+  Settings:
+    UseModelSpaceTranslations: 1
+    UseModelSpaceRotations: 1
+    UseLocalSpaceTranslations: 0
+    UseLocalSpaceRotations: 0
+    UseModelSpaceLinearVelocity: 0
+    UseLocalSpaceLinearVelocity: 0
+    UseJointPositionsAndAngles: 0
+    UseJointForces: 0
+  sensorName: RigidbodySensor
 --- !u!114 &6270881266531158095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8432,7 +8461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: GroundSensor
-  m_DetectableTags: []
+  m_DetectableTags:
+  - Obstacle
+  - Ground
   m_RaysPerDirection: 6
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0.2
@@ -8523,7 +8554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SensorName: AimingSensor
-  m_DetectableTags: []
+  m_DetectableTags:
+  - Obstacle
+  - Tank
   m_RaysPerDirection: 3
   m_MaxRayDegrees: 9
   m_SphereCastRadius: 0.05
