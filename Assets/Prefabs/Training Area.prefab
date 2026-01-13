@@ -118,7 +118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9099197946219039919}
+  m_Father: {fileID: 4121769814962835447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3328532261935780989
 MonoBehaviour:
@@ -134,6 +134,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tankPrefab: {fileID: 3996162239000903537, guid: fc8b6fb4feb050048820d8131aa43496, type: 3}
   _tankCount: 1
+--- !u!1 &3653788516152034176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4121769814962835447}
+  - component: {fileID: 7735686667541335798}
+  m_Layer: 0
+  m_Name: Team Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4121769814962835447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653788516152034176}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3891735564725854671}
+  - {fileID: 4569628829663924280}
+  m_Father: {fileID: 9099197946219039919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7735686667541335798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653788516152034176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc7f70ee0959594cbf7a6ac0be008f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _teams:
+  - {fileID: 3328532261935780989}
+  - {fileID: 5679679528340389432}
 --- !u!1 &5554368033071571106
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +213,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9099197946219039919}
+  m_Father: {fileID: 4121769814962835447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5679679528340389432
 MonoBehaviour:
@@ -1207,8 +1256,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4956858447554713169}
-  - {fileID: 3891735564725854671}
-  - {fileID: 4569628829663924280}
+  - {fileID: 4121769814962835447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &892762984440489950

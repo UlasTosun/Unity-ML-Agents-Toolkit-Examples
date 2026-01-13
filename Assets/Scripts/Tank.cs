@@ -12,6 +12,7 @@ public class Tank : Agent {
 
     public float RelativeHealth => Mathf.Clamp01((float) Health / _maxHealth);
     public event UnityAction OnHealthChanged;
+    public event UnityAction OnTankDead;
     public event UnityAction OnEpisodeStarted;
     public event UnityAction OnCollectObservations;
 
@@ -27,6 +28,10 @@ public class Tank : Agent {
             if (_health == value)
                 return;
             _health = Mathf.Clamp(value, 0, _maxHealth);
+            
+            if (_health <= 0)
+                Die();
+            
             OnHealthChanged?.Invoke();
         }
     }
@@ -54,11 +59,10 @@ public class Tank : Agent {
 
 
     public void HitOnTarget(bool isEnemyDestroyed) {
-        Debug.Log("Hit target" + (isEnemyDestroyed ? " and destroyed it." : "."));
+        //Debug.Log("Hit target" + (isEnemyDestroyed ? " and destroyed it." : "."));
         if (isEnemyDestroyed) {
             SetReward(1f);
-            EndEpisode();
-            Debug.Log("Enemy tank destroyed, ending episode.");
+            //Debug.Log("Enemy tank destroyed, ending episode.");
         } else {
             AddReward(0.1f);
         }
@@ -67,18 +71,14 @@ public class Tank : Agent {
 
 
     public void MissTarget() {
-        Debug.Log("Missed target");
         AddReward(-0.05f);
     }
 
 
 
     public void TakeDamage(int damage) {
-        Debug.Log($"Tank took {damage} damage");
         Health -= damage;
-
-        if (Health <= 0)
-            Die();
+        AddReward(-Mathf.Clamp((float)damage / _maxHealth, 0f, 1f));
     }
 
 
@@ -91,9 +91,10 @@ public class Tank : Agent {
 
 
     private void Die() {
-        SetReward(-1f);
-        EndEpisode();
-        Debug.Log("Tank destroyed, ending episode.");
+        Debug.Log("Tank destroyed " + gameObject.name);
+        SetReward(-1f); // TODO remove this for the team mode
+        gameObject.SetActive(false);
+        OnTankDead?.Invoke();
     }
 
 
