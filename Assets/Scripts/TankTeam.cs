@@ -79,9 +79,9 @@ public class TankTeam : MonoBehaviour {
 
 
     private void Win() {
+        Debug.Log($"Team {name} won!", gameObject);
         _agentGroup.SetGroupReward(1f);
         _agentGroup.EndGroupEpisode();
-        Debug.Log($"Team {name} won!");
     }
 
 
@@ -89,7 +89,6 @@ public class TankTeam : MonoBehaviour {
     private void Lose() {
         _agentGroup.SetGroupReward(-1f);
         _agentGroup.EndGroupEpisode();
-        Debug.Log($"Team {name} lost!");
     }
 
 

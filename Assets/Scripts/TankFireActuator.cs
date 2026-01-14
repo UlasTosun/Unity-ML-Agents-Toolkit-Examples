@@ -45,7 +45,7 @@ public class TankFireActuator : ActuatorComponent, IActuator {
 
 
     private void OnEpisodeStarted() {
-        _timeSinceLastShot = _reloadTime;
+        _timeSinceLastShot = 0f;
     }
 
 

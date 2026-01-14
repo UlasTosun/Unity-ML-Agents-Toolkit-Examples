@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Unity.MLAgents;
+using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 
 
@@ -11,6 +13,7 @@ public class Tank : Agent {
     [SerializeField] private int _maxHealth = 100;
 
     public float RelativeHealth => Mathf.Clamp01((float) Health / _maxHealth);
+    public int TeamId => GetComponent<BehaviorParameters>().TeamId;
     public event UnityAction OnHealthChanged;
     public event UnityAction OnTankDead;
     public event UnityAction OnEpisodeStarted;
@@ -28,10 +31,10 @@ public class Tank : Agent {
             if (_health == value)
                 return;
             _health = Mathf.Clamp(value, 0, _maxHealth);
-            
+
             if (_health <= 0)
                 Die();
-            
+
             OnHealthChanged?.Invoke();
         }
     }
@@ -58,27 +61,27 @@ public class Tank : Agent {
 
 
 
-    public void HitOnTarget(bool isEnemyDestroyed) {
-        //Debug.Log("Hit target" + (isEnemyDestroyed ? " and destroyed it." : "."));
-        if (isEnemyDestroyed) {
-            SetReward(1f);
-            //Debug.Log("Enemy tank destroyed, ending episode.");
-        } else {
-            AddReward(0.1f);
+    public void SetShotResult(ShotResult result) {
+        switch (result) {
+            case ShotResult.Miss:
+                AddReward(-0.01f);
+                break;
+            
+            case ShotResult.FriendlyFire:
+                AddReward(-0.2f);
+                break;
+
+            case ShotResult.HitWithoutDestroyingTank:
+                AddReward(0.2f);
+                break;
+
+            case ShotResult.HitAndDestroyTank:
+                AddReward(1f);
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(result), result, null);
         }
-    }
-
-
-
-    public void MissTarget() {
-        AddReward(-0.05f);
-    }
-
-
-
-    public void TakeDamage(int damage) {
-        Health -= damage;
-        AddReward(-Mathf.Clamp((float)damage / _maxHealth, 0f, 1f));
     }
 
 
@@ -90,8 +93,30 @@ public class Tank : Agent {
 
 
 
+    private void OnCollisionEnter(Collision collision) {
+        if (!collision.gameObject.TryGetComponent(out Projectile projectile) || projectile.Tank == this)
+            return;
+
+        ShotResult result = projectile.Tank.TeamId == TeamId
+            ? ShotResult.FriendlyFire
+            : Health <= projectile.Damage
+                ? ShotResult.HitAndDestroyTank
+                : ShotResult.HitWithoutDestroyingTank;
+        
+        projectile.Tank.SetShotResult(result); // first, inform the enemy tank about the shot result
+        TakeDamage(projectile.Damage); // taking damage may destroy this tank and finish the episode, so we need to call it after the shot result is set to the enemy tank
+    }
+
+
+
+    private void TakeDamage(int damage) {
+        Health -= damage;
+        AddReward(-Mathf.Clamp((float) damage / _maxHealth, 0f, 1f));
+    }
+
+
+
     private void Die() {
-        Debug.Log("Tank destroyed " + gameObject.name);
         SetReward(-1f); // TODO remove this for the team mode
         gameObject.SetActive(false);
         OnTankDead?.Invoke();

@@ -7,53 +7,52 @@ public class Projectile : MonoBehaviour {
     [Header("Settings")]
     [SerializeField] private float _speed = 60f;
     [SerializeField] private float _range = 60f;
-    [SerializeField] private int _damage = 40;
+    [field: SerializeField] public int Damage { get; private set; } = 40;
 
     [Header("References")]
     [SerializeField] private ParticleSystem _hitEffect;
     [field: SerializeField] public Material Material { get; private set; }
 
     private Rigidbody _rigidbody;
-    private Tank _tank;
-    private LayerMask _tankLayer;
-
+    
+    public Tank Tank { get; private set; }
+    
 
 
     private void Start() {
-        _tankLayer = LayerMask.NameToLayer("Tank");
-
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.linearVelocity = transform.forward * _speed;
 
-        Invoke(nameof(SelfDestroy), _range / _speed);
+        Invoke(nameof(TimeOut), _range / _speed);
     }
 
 
 
     public void Initialize(Tank tank) {
-        _tank = tank;
-        _tank.OnEpisodeStarted += OnEpisodeStarted;
+        Tank = tank;
+        Tank.OnEpisodeStarted += OnEpisodeStarted;
     }
 
 
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.layer == _tankLayer && collision.gameObject.TryGetComponent<Tank>(out Tank hitTank)) {
-            if (hitTank == _tank)
-                return;
-            else {
-                _tank.HitOnTarget(hitTank.Health <= _damage);
-                hitTank.TakeDamage(_damage);
-                SelfDestroy();
-            }
-        } else {
-            _tank.MissTarget();
-            SelfDestroy();
-        }
+        if (collision.gameObject == Tank.gameObject)
+            return;
 
+        if (!collision.gameObject.TryGetComponent(out Tank otherTank))
+            Tank.SetShotResult(ShotResult.Miss);
+        
         PlayParticle(collision);
+        SelfDestroy();
     }
 
+
+
+    private void TimeOut() {
+        Tank.SetShotResult(ShotResult.Miss);
+        SelfDestroy();
+    }
+    
 
 
     private void PlayParticle(Collision collision) {
@@ -72,11 +71,22 @@ public class Projectile : MonoBehaviour {
 
 
     private void SelfDestroy() {
-        _tank.OnEpisodeStarted -= OnEpisodeStarted;
+        Tank.OnEpisodeStarted -= OnEpisodeStarted;
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
 
 
+
+}
+
+
+
+public enum ShotResult {
+
+    Miss,
+    FriendlyFire,
+    HitWithoutDestroyingTank,
+    HitAndDestroyTank
 
 }
