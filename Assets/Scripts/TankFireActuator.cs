@@ -84,7 +84,8 @@ public class TankFireActuator : ActuatorComponent, IActuator {
 
 
     public void WriteDiscreteActionMask(IDiscreteActionMask actionMask) {
-
+        if (_timeSinceLastShot < _reloadTime || ActiveProjectile)
+            actionMask.SetActionEnabled(0, 1, false);
     }
 
 
