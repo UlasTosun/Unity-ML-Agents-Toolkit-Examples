@@ -44,19 +44,8 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
         _angularSpeed = 0f;
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-
-        MoveToRandomPosition();
     }
-
-
-
-    private void MoveToRandomPosition() {
-        Vector2 randomPosition = Random.insideUnitCircle * 5f;
-        _rigidbody.position = new Vector3(randomPosition.x, 0f, randomPosition.y) + transform.parent.position -
-                              new Vector3(0f, 0.0f, 10f);
-        _rigidbody.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-    }
-
+    
 
 
     public void OnActionReceived(ActionBuffers actionBuffers) {

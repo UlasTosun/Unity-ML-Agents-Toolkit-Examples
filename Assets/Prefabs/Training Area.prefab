@@ -133,7 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tankPrefab: {fileID: 3996162239000903537, guid: fc8b6fb4feb050048820d8131aa43496, type: 3}
-  _tankCount: 1
+  _tankCount: 3
+  _spawnCenter: {x: 9.5, y: 0, z: -9}
+  _spawnRadius: 5
+  _spawnDistance: 1
 --- !u!1 &3653788516152034176
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +232,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tankPrefab: {fileID: 1002752051901503365, guid: d5e7eb78bd551cc49b4bdaf6a06f0bdf, type: 3}
-  _tankCount: 1
+  _tankCount: 3
+  _spawnCenter: {x: -9.5, y: 0, z: 9}
+  _spawnRadius: 5
+  _spawnDistance: 1
 --- !u!1 &6741700966159195598
 GameObject:
   m_ObjectHideFlags: 0

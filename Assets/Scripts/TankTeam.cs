@@ -14,6 +14,9 @@ public class TankTeam : MonoBehaviour {
     [Header("Settings")]
     [Min(1)]
     [SerializeField] private int _tankCount = 1;
+    [SerializeField] private Vector3 _spawnCenter;
+    [SerializeField] private float _spawnRadius = 5f;
+    [SerializeField] private float _spawnDistance = 1f;
 
     private readonly List<Tank> _tanks = new();
     private SimpleMultiAgentGroup _agentGroup;
@@ -42,6 +45,8 @@ public class TankTeam : MonoBehaviour {
             _tanks.Add(tank);
             tank.OnTankDead += OnTankDead;
         }
+        
+        MoveTanksToRandomSpawnPosition();
     }
 
 
@@ -96,8 +101,41 @@ public class TankTeam : MonoBehaviour {
 
     private void ResetTeam() {
         AddMissingTanksToGroup();
+        MoveTanksToRandomSpawnPosition();
     }
-    
+
+
+
+    private void MoveTanksToRandomSpawnPosition() {
+        List<Tank> positionedTanks = new();
+        foreach (Tank tank in _tanks) {
+            Vector3 spawnPosition = GetRandomSpawnPosition();
+            while (positionedTanks.Any(t => Vector3.Distance(t.transform.position, spawnPosition) < _spawnDistance)) {
+                spawnPosition = GetRandomSpawnPosition();
+            }
+
+            positionedTanks.Add(tank);
+            tank.transform.position = spawnPosition;
+            tank.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+        }
+    }
+
+
+
+    private Vector3 GetRandomSpawnPosition() {
+        Vector2 randomPosition = _spawnRadius * Random.insideUnitCircle;
+        return _spawnCenter + new Vector3(randomPosition.x, 0f, randomPosition.y);
+    }
+
+
+
+    private void OnDrawGizmosSelected() {
+        Color color = Gizmos.color;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_spawnCenter, _spawnRadius);
+        Gizmos.color = color;
+    }
+
 
 
     private void OnDestroy() {
