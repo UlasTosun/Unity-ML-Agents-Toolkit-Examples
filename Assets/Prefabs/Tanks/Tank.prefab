@@ -4517,7 +4517,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  m_ObservationStacks: 5
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   _environmentRaySensor: {fileID: 5477982240615182874}
   _aimingRaySensor: {fileID: 9009050469086354430}
   <SensorName>k__BackingField: TankSensor
-  _observationStacks: 5
+  _observationStacks: 3
 --- !u!114 &7455049307762589245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8471,7 +8471,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 136
-  m_ObservationStacks: 5
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -8564,7 +8564,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  m_ObservationStacks: 5
+  m_ObservationStacks: 3
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
