@@ -68,15 +68,15 @@ public class Tank : Agent {
                 break;
             
             case ShotResult.FriendlyFire:
-                AddReward(-0.2f);
+                AddReward(-0.3f);
                 break;
 
             case ShotResult.HitWithoutDestroyingTank:
-                AddReward(0.2f);
+                AddReward(0.1f);
                 break;
 
             case ShotResult.HitAndDestroyTank:
-                AddReward(1f);
+                AddReward(0.3f);
                 break;
 
             default:
@@ -111,13 +111,13 @@ public class Tank : Agent {
 
     private void TakeDamage(int damage) {
         Health -= damage;
-        AddReward(-Mathf.Clamp((float) damage / _maxHealth, 0f, 1f));
+        AddReward(-0.1f);
     }
 
 
 
     private void Die() {
-        SetReward(-1f); // TODO remove this for the team mode
+        AddReward(-0.3f);
         gameObject.SetActive(false);
         OnTankDead?.Invoke();
     }
