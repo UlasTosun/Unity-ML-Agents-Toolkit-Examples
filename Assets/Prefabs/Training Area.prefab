@@ -183,6 +183,7 @@ MonoBehaviour:
   _teams:
   - {fileID: 3328532261935780989}
   - {fileID: 5679679528340389432}
+  _maxStep: 10000
 --- !u!1 &5554368033071571106
 GameObject:
   m_ObjectHideFlags: 0

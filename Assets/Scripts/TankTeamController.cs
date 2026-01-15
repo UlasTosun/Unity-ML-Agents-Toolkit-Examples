@@ -8,9 +8,15 @@ public class TankTeamController : MonoBehaviour {
 
     [Header("References")]
     [SerializeField] private TankTeam[] _teams;
+
+    [Header("Settings")]
+    [Min(0)]
+    [SerializeField] private int _maxStep;
     
     public event UnityAction<TankTeam> OnGameEnded;
     public event UnityAction OnGameInterrupted;
+
+    private int _stepCount;
 
 
 
@@ -19,6 +25,18 @@ public class TankTeamController : MonoBehaviour {
             team.Initialize(this);
             team.OnTankInTeamDead += OnTankInTeamDead;
         }
+    }
+
+
+
+    private void FixedUpdate() {
+        _stepCount++;
+        if (_maxStep <= 0 || _stepCount < _maxStep)
+            return;
+        
+        _stepCount = 0;
+        Debug.Log("Max step reached, interrupting game.");
+        OnGameInterrupted?.Invoke();
     }
 
 

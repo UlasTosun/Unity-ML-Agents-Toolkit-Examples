@@ -63,6 +63,7 @@ public class TankTeam : MonoBehaviour {
 
     private void OnGameInterrupted() {
         _agentGroup.GroupEpisodeInterrupted();
+        ResetTeam();
     }
 
 
