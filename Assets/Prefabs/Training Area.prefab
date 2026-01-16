@@ -187,6 +187,13 @@ MonoBehaviour:
   - {fileID: 3328532261935780989}
   - {fileID: 5679679528340389432}
   _maxStep: 10000
+  _spawnPositions:
+  - Center: {x: 9.5, y: 0, z: -9}
+    Radius: 5
+    Distance: 1
+  - Center: {x: -9.5, y: 0, z: 9}
+    Radius: 5
+    Distance: 1
 --- !u!1 &5554368033071571106
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,6 @@ public class TankTeam : MonoBehaviour {
     [Header("Settings")]
     [Min(1)]
     [SerializeField] private int _tankCount = 1;
-    [SerializeField] private Vector3 _spawnCenter;
-    [SerializeField] private float _spawnRadius = 5f;
-    [SerializeField] private float _spawnDistance = 1f;
 
     private readonly List<Tank> _tanks = new();
     private SimpleMultiAgentGroup _agentGroup;
@@ -46,7 +43,7 @@ public class TankTeam : MonoBehaviour {
             tank.OnTankDead += OnTankDead;
         }
         
-        MoveTanksToRandomSpawnPosition();
+        MoveTanksToRandomPosition();
     }
 
 
@@ -101,41 +98,33 @@ public class TankTeam : MonoBehaviour {
 
     private void ResetTeam() {
         AddMissingTanksToGroup();
-        MoveTanksToRandomSpawnPosition();
+        MoveTanksToRandomPosition();
     }
 
 
 
-    private void MoveTanksToRandomSpawnPosition() {
+    private void MoveTanksToRandomPosition() {
         List<Tank> positionedTanks = new();
+        SpawnPosition spawnPosition = _teamController.GetRandomSpawnPosition(this);
         foreach (Tank tank in _tanks) {
-            Vector3 spawnPosition = GetRandomSpawnPosition();
-            while (positionedTanks.Any(t => Vector3.Distance(t.transform.position, spawnPosition) < _spawnDistance)) {
-                spawnPosition = GetRandomSpawnPosition();
+            Vector3 position = GetRandomSpawnPosition(spawnPosition);
+            while (positionedTanks.Any(t => Vector3.Distance(t.transform.position, position) < spawnPosition.Distance)) {
+                position = GetRandomSpawnPosition(spawnPosition);
             }
 
             positionedTanks.Add(tank);
-            tank.transform.position = spawnPosition;
+            tank.transform.position = position;
             tank.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
         }
     }
 
 
 
-    private Vector3 GetRandomSpawnPosition() {
-        Vector2 randomPosition = _spawnRadius * Random.insideUnitCircle;
-        return _spawnCenter + new Vector3(randomPosition.x, 0f, randomPosition.y);
+    private Vector3 GetRandomSpawnPosition(SpawnPosition spawnPosition) {
+        Vector2 randomPosition = spawnPosition.Radius * Random.insideUnitCircle;
+        return spawnPosition.Center + new Vector3(randomPosition.x, 0f, randomPosition.y);
     }
-
-
-
-    private void OnDrawGizmosSelected() {
-        Color color = Gizmos.color;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_spawnCenter, _spawnRadius);
-        Gizmos.color = color;
-    }
-
+    
 
 
     private void OnDestroy() {
