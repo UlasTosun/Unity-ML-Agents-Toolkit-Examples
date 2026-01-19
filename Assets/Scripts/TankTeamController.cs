@@ -43,7 +43,7 @@ public class TankTeamController : MonoBehaviour {
             return;
         
         _stepCount = 0;
-        Debug.Log("Max step reached, interrupting game.");
+        Debug.Log("Max step reached, interrupting the game.");
         ShuffleSpawnPositions();
         OnGameInterrupted?.Invoke();
     }

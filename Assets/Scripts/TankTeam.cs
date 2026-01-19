@@ -75,7 +75,7 @@ public class TankTeam : MonoBehaviour {
             Win();
         else
             Lose();
-        
+
         ResetTeam();
     }
 
@@ -113,8 +113,8 @@ public class TankTeam : MonoBehaviour {
             }
 
             positionedTanks.Add(tank);
-            tank.transform.position = position;
-            tank.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            tank.transform.localPosition = position;
+            tank.transform.localRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
         }
     }
 
