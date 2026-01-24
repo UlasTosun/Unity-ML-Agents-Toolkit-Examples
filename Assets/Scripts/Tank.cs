@@ -64,7 +64,7 @@ public class Tank : Agent {
     public void SetShotResult(ShotResult result) {
         switch (result) {
             case ShotResult.Miss:
-                AddReward(-0.01f);
+                AddReward(-0.001f);
                 break;
             
             case ShotResult.FriendlyFire:

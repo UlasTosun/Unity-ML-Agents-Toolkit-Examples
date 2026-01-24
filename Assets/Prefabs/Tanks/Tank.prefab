@@ -4517,7 +4517,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -4796,7 +4796,7 @@ GameObject:
   - component: {fileID: -6947395340430454458}
   - component: {fileID: 2504913521043133853}
   - component: {fileID: 9026857706515597225}
-  - component: {fileID: -693615390004548525}
+  - component: {fileID: -3614955274003403369}
   - component: {fileID: 7455049307762589245}
   - component: {fileID: 6270881266531158095}
   - component: {fileID: -4771750826436511689}
@@ -4873,7 +4873,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &-6947395340430454458
 MonoBehaviour:
@@ -4928,7 +4928,7 @@ MonoBehaviour:
   _fireEffect: {fileID: 139959754021114971}
   <Name>k__BackingField: TankFireActuator
   _reloadTime: 1
---- !u!114 &-693615390004548525
+--- !u!114 &-3614955274003403369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   _environmentRaySensor: {fileID: 5477982240615182874}
   _aimingRaySensor: {fileID: 9009050469086354430}
   <SensorName>k__BackingField: TankSensor
-  _observationStacks: 3
+  _observationStacks: 5
 --- !u!114 &7455049307762589245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8471,7 +8471,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 136
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
@@ -8564,7 +8564,7 @@ MonoBehaviour:
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  m_ObservationStacks: 3
+  m_ObservationStacks: 1
   m_AlternatingRayOrder: 0
   m_UseBatchedRaycasts: 0
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
