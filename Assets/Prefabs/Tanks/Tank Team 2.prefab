@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: <ProjectileMaterial>k__BackingField
       value: 
       objectReference: {fileID: 2100000, guid: 363ea897b31e10c449f79bf8a011555c, type: 2}
+    - target: {fileID: -3614955274003403369, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: <SensorName>k__BackingField
+      value: TankSensorTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 319607260234838627, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -204,6 +208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank Team 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4890786044646817406, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: m_TagString
+      value: TankTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 5083708797891424920, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -224,6 +232,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 363ea897b31e10c449f79bf8a011555c, type: 2}
+    - target: {fileID: 5477982240615182874, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: m_SensorName
+      value: EnvironmentSensorTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 5612105477786460998, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -280,6 +292,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 363ea897b31e10c449f79bf8a011555c, type: 2}
+    - target: {fileID: 6548946620229312947, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: m_SensorName
+      value: GroundSensorTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 6582079056194850333, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -368,6 +384,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 363ea897b31e10c449f79bf8a011555c, type: 2}
+    - target: {fileID: 7455049307762589245, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: sensorName
+      value: RigidbodySensorTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 7830685211422670367, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -420,6 +440,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 363ea897b31e10c449f79bf8a011555c, type: 2}
+    - target: {fileID: 9009050469086354430, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: m_SensorName
+      value: AimingSensorTeam2
+      objectReference: {fileID: 0}
     - target: {fileID: 9026857706515597225, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: _projectilePrefab
       value: 

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 90
-  _range: 30
-  _damage: 40
+  _range: 20
+  <Damage>k__BackingField: 40
   _hitEffect: {fileID: 8176509273198405907, guid: 736f721b37a84e84880d25853b09a043, type: 3}
   <Material>k__BackingField: {fileID: 0}

@@ -111,13 +111,13 @@ public class Tank : Agent {
 
     private void TakeDamage(int damage) {
         Health -= damage;
-        AddReward(-0.1f);
+        AddReward(-0.02f);
     }
 
 
 
     private void Die() {
-        AddReward(-0.3f);
+        AddReward(-0.06f);
         gameObject.SetActive(false);
         OnTankDead?.Invoke();
     }

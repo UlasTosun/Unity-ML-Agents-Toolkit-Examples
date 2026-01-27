@@ -20,6 +20,8 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
     private float _speed;
     private float _angularSpeed;
 
+    public float RelativeSpeed => Mathf.Clamp(_speed / _maxSpeed, -1f, 1f);
+    public float RelativeAngularSpeed => Mathf.Clamp(_angularSpeed / _maxAngularSpeed, -1f, 1f);
     public override ActionSpec ActionSpec { get; } = ActionSpec.MakeDiscrete(3, 3);
 
 
@@ -55,8 +57,11 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
 
 
 
-    // 0: stop, 1: forward, -1: backward
+    // 0: stop, 1: forward, 2: backward
     private void Move(int action) {
+        if (action == 2)
+            action = -1; // invert action to move backwards
+        
         float speedChange = _acceleration * Time.fixedDeltaTime;
         if (action == 0) { // stop
             _speed = _speed > 0f
@@ -72,8 +77,11 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
 
 
 
-    // 0: no turn, 1: right turn, -1: left turn
+    // 0: no turn, 1: right turn, 2: left turn
     private void Rotate(int action) {
+        if (action == 2)
+            action = -1; // invert action to turn left
+        
         float angularSpeedChange = _angularAcceleration * Time.fixedDeltaTime;
         if (action == 0) { // stop
             _angularSpeed = _angularSpeed > 0f
@@ -96,14 +104,14 @@ public class TankMoveActuator : ActuatorComponent, IActuator {
         // Move
         discreteActions[0] = moveInput.y switch {
                                  > 0 => 1,
-                                 < 0 => -1,
+                                 < 0 => 2,
                                  _ => 0
                              };
 
         // Turn
         discreteActions[1] = moveInput.x switch {
                                  > 0 => 1,
-                                 < 0 => -1,
+                                 < 0 => 2,
                                  _ => 0
                              };
     }
