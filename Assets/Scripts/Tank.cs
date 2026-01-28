@@ -68,7 +68,7 @@ public class Tank : Agent {
                 break;
             
             case ShotResult.FriendlyFire:
-                AddReward(-0.3f);
+                AddReward(-1f); // At the beginning of the training, the reward was -0.3f and -0.5f, respectively
                 break;
 
             case ShotResult.HitWithoutDestroyingTank:
@@ -111,13 +111,13 @@ public class Tank : Agent {
 
     private void TakeDamage(int damage) {
         Health -= damage;
-        AddReward(-0.02f);
+        AddReward(-0.033f); // At the beginning of the training, the reward was -0.02f
     }
 
 
-
+    
     private void Die() {
-        AddReward(-0.06f);
+        AddReward(-0.1f); // At the beginning of the training, the reward was -0.06f
         gameObject.SetActive(false);
         OnTankDead?.Invoke();
     }

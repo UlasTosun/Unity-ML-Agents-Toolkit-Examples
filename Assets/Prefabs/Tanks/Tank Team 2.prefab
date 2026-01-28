@@ -236,6 +236,14 @@ PrefabInstance:
       propertyPath: m_SensorName
       value: EnvironmentSensorTeam2
       objectReference: {fileID: 0}
+    - target: {fileID: 5477982240615182874, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[1]'
+      value: TankTeam2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477982240615182874, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[2]'
+      value: TankTeam1
+      objectReference: {fileID: 0}
     - target: {fileID: 5612105477786460998, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -443,6 +451,14 @@ PrefabInstance:
     - target: {fileID: 9009050469086354430, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: m_SensorName
       value: AimingSensorTeam2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009050469086354430, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[1]'
+      value: TankTeam2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009050469086354430, guid: 6d112af787acde747ac248208089b9c6, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[2]'
+      value: TankTeam1
       objectReference: {fileID: 0}
     - target: {fileID: 9026857706515597225, guid: 6d112af787acde747ac248208089b9c6, type: 3}
       propertyPath: _projectilePrefab

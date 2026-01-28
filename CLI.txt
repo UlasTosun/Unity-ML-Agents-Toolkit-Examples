@@ -1,0 +1,1 @@
+mlagents-learn Config\Tank.yaml --env=Builds\MLAgents.exe --run-id=RUN_ID --force --initialize-from=ID --num-envs=2 --width=1024 --height=768 --no-graphics
