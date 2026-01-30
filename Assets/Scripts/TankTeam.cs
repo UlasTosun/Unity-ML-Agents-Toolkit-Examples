@@ -82,7 +82,7 @@ public class TankTeam : MonoBehaviour {
 
 
     private void Win() {
-        //Debug.Log($"Team {name} won!", gameObject);
+        Debug.Log($"Team {name} won!", gameObject);
         _agentGroup.AddGroupReward(1f);
         _agentGroup.EndGroupEpisode();
     }

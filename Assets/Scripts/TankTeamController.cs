@@ -24,8 +24,8 @@ public class TankTeamController : MonoBehaviour {
 
 
     private void Awake() {
-        if (_teams.Length != _spawnPositions.Length)
-            Debug.LogError("The number of spawn positions must match the number of teams.");
+        if (_teams.Length > _spawnPositions.Length)
+            Debug.LogError("The number of spawn positions must match or exceed the number of teams.");
         
         ShuffleSpawnPositions();
         
