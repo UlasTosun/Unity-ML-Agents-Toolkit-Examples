@@ -10,6 +10,7 @@ This repository provides an example of a multi-agent, adversarial tank battle en
 ## Network Architecture
 
 In this example, tanks (agents) must fight against enemy tanks and cooperate with their teammates; therefore, the trainer must be both cooperative multi-agent and adversarial. [MA-POCA (MultiAgent POsthumous Credit Assignment)]( https://docs.unity3d.com/Packages/com.unity.ml-agents@4.0/manual/ML-Agents-Overview.html#training-in-cooperative-multi-agent-environments-with-ma-poca) was chosen as the trainer to be able to train such agents. The network (trainer) has two layers with 512 hidden units. The self-play module is enabled to satisfy the adversarial scenario and teams change every 200k steps. For further details of the network, please refer to the [configuration file](Config/Tank.yaml). The screenshot below visualizes the network architecture.
+
 ![Network Architecture](Screenshots/Network.png)<br/><br/>
 
 ## Training Environment
@@ -20,6 +21,7 @@ To achieve more consistent and better results, the training process was divided 
 * **Stage 3:** Ground has water holes, no surrounding walls. Teams have 2 tanks.
 * **Stage 4:** The same environment with stage 3. Teams have 3 tanks.
 * **Stage 5:** Double sized environment with more obstacles and possible spawn points. Teams have 5 tanks.
+
 The screenshot below shows the final environment without tanks.
 ![Network Architecture](Screenshots/TrainingArea.png)<br/><br/>
 
@@ -29,6 +31,7 @@ An agent (tank) has a total of 3 discrete action branches in 2 different actuato
 * **Branch 1:** Move forward, backward or do not move.
 * **Branch 2:** Rotate left, right or do not rotate.
 * **Branch 3:** Fire or do not fire.
+
 Movement and rotation actions is implemented in the same [actuator](Assets/Scripts/TankMoveActuator.cs) and firing is implemented on [another one](Assets/Scripts/TankFireActuator.cs). Furthermore, motion and rotation have been implemented in different branches to allow the agent to move and turn simultaneously.
 
 ## Observations and Sensors
@@ -36,6 +39,7 @@ Movement and rotation actions is implemented in the same [actuator](Assets/Scrip
 An agent collects observations by using Ray Perception Sensors which implements ray-casting. Each agent has 3 different ray sensors; one to detect the ground to prevent falling into the water, one to collect information about the environment and other tanks and one to accurate aiming. So, agents do not cheat, do not get positions of other tanks (enemy or ally) directly. 
 
 On the other hand, the built-in Ray Perception Sensors can collect limited observations about the environment. The only observations the collect are relative distances with respect to ray length and tags of the casted objects. To overcome this problem and collecting additional observations, a [new sensor](Assets/Scripts/TankSensor.cs) is implemented. This new sensor adds health of the detected tanks in addition to observations of the built-in ray sensor with the stacking feature. This health information encourages tanks to fire at enemies with low health and destroy them instantly.
+
 ![Network Architecture](Screenshots/Sensors.png)<br/><br/>
 
 ## Rewards and Penalties
@@ -59,15 +63,15 @@ Following training results are from the final training stage (the one with the d
 
 
 The image below shows how the cumulative reward changes during the training.
-![Environment Cumulative Reward](Training Results/Environment_Cumulative Reward.svg)<br/><br/>
+![Environment Cumulative Reward](TrainingResults/Environment_Cumulative Reward.svg)<br/><br/>
 
 The image below shows how the group cumulative reward changes during the training.
-![Environment Group Cumulative Reward](Training Results/Environment Group Cumulative Reward.svg)<br/><br/>
+![Environment Group Cumulative Reward](TrainingResults/Environment_Group Cumulative Reward.svg)<br/><br/>
 
 The image below shows how the self-play ELO score changes during the training.
-![Self-Play ELO Score](Training Results/Self-play_ELO.svg)<br/><br/>
+![Self-Play ELO Score](TrainingResults/Self-play_ELO.svg)<br/><br/>
 
-More plots about the training can be found in [training results](Training Results/) folder. Also, please note that agents are trained in a harsh environment with severe penalties, and as a result, the rewards are not as high as expected.
+More plots about the training can be found in [training results](TrainingResults/) folder. Also, please note that agents are trained in a harsh environment with severe penalties, and as a result, the rewards are not as high as expected.
 
 ## Test and Heuristic Mode
 
