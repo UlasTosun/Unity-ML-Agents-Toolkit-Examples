@@ -57,16 +57,17 @@ Both group and agent rewards are used during the training to achieve better perf
     * Get damage: -0.02 and -0.033, respectively.
     * Get destroyed: -0.06 and -0.1, respectively.
 
+
 ## Training Results
 
 Following training results are from the final training stage (the one with the double sized environment).
 
 
 The image below shows how the cumulative reward changes during the training.
-![Environment Cumulative Reward](TrainingResults/Environment_Cumulative Reward.svg)<br/><br/>
+![Environment Cumulative Reward](TrainingResults/Environment_Cumulative_Reward.svg)<br/><br/>
 
 The image below shows how the group cumulative reward changes during the training.
-![Environment Group Cumulative Reward](TrainingResults/Environment_Group Cumulative Reward.svg)<br/><br/>
+![Environment Group Cumulative Reward](TrainingResults/Environment_Group_Cumulative_Reward.svg)<br/><br/>
 
 The image below shows how the self-play ELO score changes during the training.
 ![Self-Play ELO Score](TrainingResults/Self-play_ELO.svg)<br/><br/>
